@@ -1,0 +1,218 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="registrationForm">
+        <div class="row">
+            <div class="col-lg-4">
+                <img [src]="imageSrc" *ngIf="imageSrc" style="height: 310px; width:325px">
+                <div class="form-group">
+                    <!-- <label for="file">File</label> -->
+                    <input formControlName="file" id="file" type="file" class="inputfile inputfile-1"
+                        (change)="onFileChange($event)">
+                    <label for="file"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17"
+                            viewBox="0 0 20 17">
+                            <path
+                                d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z" />
+                        </svg> <span>Choose a file&hellip;</span></label>
+                </div>
+                <div *ngIf="registrationForm.controls['file'].invalid && (registrationForm.controls['file'].dirty || registrationForm.controls['file'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registrationForm.controls['file'].errors?.required">
+                        Profile Picture is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div style="display:flex;" class="form-group">
+                    <input style="width:50%; margin-right:10px;" id="fN" type="text" formControlName="fname"
+                        maxlength="20" class="form-control" placeholder=" First-Name" required>
+
+                    <input style="width:50%;" type="text" id="lN" formControlName="lname" class="form-control"
+                        placeholder="Last-Name" required>
+
+                </div>
+
+                <div *ngIf="registrationForm.controls['fname'].invalid && (registrationForm.controls['fname'].dirty || registrationForm.controls['fname'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registrationForm.controls['fname'].errors?.required">
+                        First-Name is required.
+                    </div>
+                    <div *ngIf="registrationForm.controls['fname'].errors?.pattern">
+                        Only alphabets are acceptable in First-Name.
+                    </div>
+                </div>
+                <div *ngIf="registrationForm.controls['lname'].invalid && (registrationForm.controls['lname'].dirty || registrationForm.controls['lname'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registrationForm.controls['lname'].errors?.required">
+                        Last-Name is required.
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <input type="email" id="mail" formControlName="mail" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div *ngIf="registrationForm.controls['mail'].invalid && (registrationForm.controls['mail'].dirty || registrationForm.controls['mail'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="registrationForm.controls['mail'].errors?.required">
+                            Email is required.
+                        </div>
+                        <div *ngIf="registrationForm.controls['mail'].errors?.pattern">
+                            Complete the Email.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <input type="password" id="passs" formControlName="pass" class="form-control"
+                            placeholder="Passowrd" required required ng-minlength="6" ng-maxlength="10">
+                    </div>
+                    <div *ngIf="registrationForm.controls['pass'].invalid && (registrationForm.controls['pass'].dirty || registrationForm.controls['pass'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="registrationForm.controls['pass'].errors?.required">
+                            Passowrd is required.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <input type="Number" id="mno" formControlName="mno" class="form-control"
+                            placeholder="Mobile Number" min="100000000" max="9999999999" required>
+                    </div>
+                    <div *ngIf="registrationForm.controls['mno'].invalid && (registrationForm.controls['mno'].dirty || registrationForm.controls['mno'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="registrationForm.controls['mno'].errors?.required">
+                            Mobile Number is required.
+                        </div>
+                        <div *ngIf="registrationForm.controls['mno'].errors?.max">
+                            Only 10 digit Mobile Number.
+                        </div>
+                        <div *ngIf="registrationForm.controls['mno'].errors?.min">
+                            Only 10 digit Mobile Number.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group" style="display:flex;">
+                        <label style="color:white;">Age</label>
+                        <input style="width:100%;" formControlName="age" type="range" min="0" max="100" class="slider"
+                            id="myRange"><br>
+                        <p><span id="demo">{{registrationForm.controls['age'].value}}</span></p>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="registrationForm.controls['age'].value < 18">
+                        Age should be more than or equalt to 18.
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="city" formControlName="city" placeholder="City"
+                            required>
+                    </div>
+                    <div *ngIf="registrationForm.controls['city'].invalid && (registrationForm.controls['city'].dirty || registrationForm.controls['city'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="registrationForm.controls['city'].errors?.required">
+                            City is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="display:flex;">
+                    <select class="form-control" formControlName="state" name="stats"
+                        style="width:90%; margin-right:10px;" type="text" style="font-size:1rem; color:grey;">
+                        <option value=null>State</option>
+                        <option value="Maharastra">Maharastra</option>
+                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="West Bengal">West Bengal</option>
+                        <option value="pune">pune</option>
+                    </select>
+
+                    <select name="country" formControlName="country" style="width:90%; margin-right:10px;" type="text">
+                        <option style="font-size:1rem; color:grey;" value=null>Country</option>
+                        <option value="India">India</option>
+                        <option value="America">America</option>
+                        <option value="England">England</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Australia">Australia</option>
+                    </select>
+                </div>
+                <div *ngIf="registrationForm.controls['state'].invalid && (registrationForm.controls['state'].dirty || registrationForm.controls['state'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registrationForm.controls['state'].errors?.required">
+                        State is required.
+                    </div>
+                </div>
+                <div *ngIf="registrationForm.controls['country'].invalid && (registrationForm.controls['country'].dirty || registrationForm.controls['country'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registrationForm.controls['country'].errors?.required">
+                        Country is required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="address" formControlName="address"
+                        style="width:90%; margin-right:10px;" type="text" style="font-size:1rem; color:grey;">
+                        <option value=null>Address</option>
+                        <option value="Home">Home</option>
+                        <option value="Company">Company</option>
+                    </select>
+                </div>
+
+                <div *ngIf="registrationForm.controls['address'].invalid && (registrationForm.controls['address'].dirty || registrationForm.controls['address'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registrationForm.controls['address'].errors?.required">
+                        Address is required.
+                    </div>
+                </div>
+
+                <div *ngIf="registrationForm.controls['address'].value === 'Home'" style="display:flex;"
+                    class="form-group">
+                    <input style="width:50%; margin-right:10px;" id="fN" type="text" formControlName="address1"
+                        class="form-control" placeholder="Address 1" required>
+                    <input style="width:50%;" type="text" id="lN" formControlName="address2" class="form-control"
+                        placeholder="Address 2" required>
+                </div>
+
+                <div *ngIf="registrationForm.controls['address'].value === 'Company'" style="display:flex;"
+                    class="form-group">
+                    <input style="width:50%; margin-right:10px;" id="fN" type="text" formControlName="address1"
+                        class="form-control" placeholder="Company Address 1" required>
+                    <input style="width:50%;" type="text" id="lN" formControlName="address2" class="form-control"
+                        placeholder="Company Address 2" required>
+                </div>
+                <div *ngIf="registrationForm.controls['address1'].invalid && (registrationForm.controls['address1'].dirty || registrationForm.controls['address1'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registrationForm.controls['address1'].errors?.required">
+                        {{registrationForm.controls['address'].value === 'Company' ? 'Company' : ''}} Address 1 is
+                        required.
+                    </div>
+                </div>
+                <div *ngIf="registrationForm.controls['address2'].invalid && (registrationForm.controls['address2'].dirty || registrationForm.controls['address2'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registrationForm.controls['address2'].errors?.required">
+                        {{registrationForm.controls['address'].value === 'Company' ? 'Company' : ''}} Address 2 is
+                        required.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" formControlName="tags" placeholder="Tags" required>
+                    <div *ngIf="registrationForm.controls['tags'].invalid && (registrationForm.controls['tags'].dirty || registrationForm.controls['tags'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="registrationForm.controls['tags'].errors?.required">
+                            Tags is required.
+                        </div>
+                    </div>
+                    <div>
+
+                        <div class="form-group">
+                            <input type="checkbox" formControlName="che" id="che" value="true">
+                            <label for="che" style="color:grey;">subscribe to newseltter</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div style="margin-left: 350px; text-align: center; margin-top: 40px; ">
+    <button style="margin-right: 30px;" class="btn btn-danger" (click)="onCancelClick()">Cancel</button>
+    <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+</div>

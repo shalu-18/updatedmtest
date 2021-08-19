@@ -1,0 +1,35 @@
+<div style=" display:flex;">
+
+    <div class="profileimg">
+        <img style="width:310px; height:325px; margin:20px; margin-left: 200px; margin-top: 50px;" [src]="userData?.file">
+    </div>
+        
+    <div>
+        <p style="margin-left:150px; font-size: medium;  margin-top:100px;">I'm {{userData?.fname}}{{userData?.lname}} and i'm 
+            {{userData?.age}} years and you can send your new emails to
+            <br>{{userData?.mail}}, i live in the state of {{userData?.state}}.i like to play {{userData?.tags}}.And
+            please send me newseltter,
+            <br>please reach out to me  through   my  contect number {{userData?.mno}}.
+        </p><br><br>
+        <button style="align-self: center; margin-left: 300px;" type="button" class="btn btn-warning" (click)="editProfile()"> Edit Profile</button>
+
+    </div>
+</div>
+
+ <!-- Footer -->
+ <footer style="height:200px; background-color:black; margin-top:100px; padding-bottom:80px;">
+    <br>
+    <h5 style="color:white; text-align: center; font-size: medium;"> subscribe to our job seeker Mailing List</h5>
+    <div style="display:flex; margin-left:550px;"><input style="width:40%; border:2px solid #2F89FC; background-color:black; color:white; " type="text" placeholder="Enter your Email Address">
+    <i style="width:40px; height:40px; background-color:black; color:white; border:2px solid #2F89FC;  font-size:2rem; " class="far fa-envelope"></i>
+    </div>
+    </footer>
+  
+  <!-- last one -->
+    <footer>
+      <div class="lastfoo" style="text-align: center; font-size: 1.5rem; font-weight: 800; height: 60px;">
+        <br>
+        <p>Find US On<i class="fab fa-twitter"></i> <i class="fab fa-instagram"></i> </p> 
+      </div>
+  
+    </footer>

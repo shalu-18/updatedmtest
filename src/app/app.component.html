@@ -1,0 +1,14 @@
+<div class="navbar" id="top">
+  <nav>
+    <ul style="display: flex;">
+      <li style="margin-top: 10px; margin-left: 60px;" class="navitem"><a routerLink="">HOME</a></li>
+      <li style="margin-top: 10px;" class="navitem" (click)="toAbout()">ABOUT US</li>
+      <li style="margin-top: 10px;" class="navitem">CLIENTS</li>
+      <li style="margin-top: 10px;" class="navitem">JOBS</li>
+      <li style="margin-top: 10px;" class="navitem">EMPLOYERS</li>
+      <li style="margin-top: 10px;" class="navitem" (click)="toContact()">CONTACT US</li>
+    </ul>
+  </nav>
+</div>
+<button id="myBtn" (click)="backToTop()">Back To Top</button>
+<router-outlet></router-outlet>
