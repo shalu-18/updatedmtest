@@ -2,7 +2,7 @@
 <div mat-dialog-content>
     <form [formGroup]="registrationForm">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-4" [ngClass]="title === 'Edit Photo' ? 'editPhoto' : ''">
                 <img [src]="imageSrc" *ngIf="imageSrc" style="height: 310px; width:325px">
                 <div class="form-group">
                     <!-- <label for="file">File</label> -->
@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div *ngIf="title !== 'Edit Photo'" class="col-lg-8">
                 <div style="display:flex;" class="form-group">
                     <input style="width:50%; margin-right:10px;" id="fN" type="text" formControlName="fname"
                         maxlength="20" class="form-control" placeholder=" First-Name" required>
@@ -212,7 +212,7 @@
         </div>
     </form>
 </div>
-<div style="margin-left: 350px; text-align: center; margin-top: 40px; ">
+<div [ngClass]="title === 'Edit Photo' ? 'editPhoto' : ''" style="margin-left: 350px; text-align: center; margin-top: 40px; ">
     <button style="margin-right: 30px;" class="btn btn-danger" (click)="onCancelClick()">Cancel</button>
     <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
 </div>

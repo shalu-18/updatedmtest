@@ -22,16 +22,16 @@ export class UserRegistrationComponent implements OnInit {
     public dialogRef: MatDialogRef<UserRegistrationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private userService: UserServiceService) {
     this.title = data.title;
-    let file = '';
     this.userDetails = data.userData;
+
     if (data.userData) {
       this.imageSrc = data.userData.file;
-      file = data.userData.file.replace(/^.*[\\\/]/, '');
     }
+    
     // fetching data from registerpage to userdetails
     const emailRe = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.registrationForm = new FormGroup({
-      file: new FormControl(file, Validators.required),
+      file: this.title === 'Register' ? new FormControl('', Validators.required) : new FormControl(''),
       fname: new FormControl(this.userDetails?.fname, [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]),
       lname: new FormControl(this.userDetails?.lname, Validators.required),
       mail: new FormControl(this.userDetails?.mail, [Validators.required, Validators.pattern(emailRe)]),

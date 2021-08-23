@@ -5,6 +5,11 @@ import { UserDetails } from '../user-registration/user-details';
 import { UserRegistrationComponent } from '../user-registration/user-registration.component';
 import { UserServiceService } from '../user-service.service';
 
+export class EditProfileOption {
+  static EDIT_PHOTO: number = 1;
+  static EDIT_PROFILE: number = 2;
+}
+
 @Component({
   selector: 'app-profile-details',
   templateUrl: './profile-details.component.html',
@@ -21,12 +26,12 @@ export class ProfileDetailsComponent implements OnInit {
     });
   }
 
-  editProfile() {
+  editProfile(editChoice: number) {
     const dialogRef = this.dialog.open(UserRegistrationComponent, {
       width: '100%',
       height: '100%',
       data: {
-        title: 'Edit Profile',
+        title: editChoice === EditProfileOption.EDIT_PROFILE ? 'Edit Profile' : 'Edit Photo',
         userData: this.userData
 
       }
